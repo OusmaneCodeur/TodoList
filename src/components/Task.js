@@ -18,9 +18,10 @@ const Task = ({ task }) => {
 
     return (
         // Conteneur d'une tâche avec sa case à cocher, sa description et ses boutons
-        <div>
+        <div className={`task-item ${task.isDone ? "is-done" : ""}`}>
             {/* Case à cocher : bascule l'état isDone dans Redux */}
             <input
+                className="task-checkbox"
                 type="checkbox"
                 checked={task.isDone}
                 onChange={() => dispatch(toggleTask(task.id))}
@@ -29,22 +30,23 @@ const Task = ({ task }) => {
             {editing ? (
                 // Mode édition : input contrôlé relié à newDesc
                 <input
+                    className="task-edit-input"
                     value={newDesc}
                     onChange={(e) => setNewDesc(e.target.value)}
                 />
             ) : (
                 // Mode affichage : on barre le texte si la tâche est terminée
-                <span style={{ textDecoration: task.isDone ? "line-through" : "none" }}>
+                <span className="task-label">
                     {task.description}
                 </span>
             )}
 
             {editing ? (
                 // Bouton pour valider la modification
-                <button onClick={saveEdit}>Enregistrer</button>
+                <button className="btn primary" onClick={saveEdit}>Enregistrer</button>
             ) : (
                 // Bouton pour entrer dans le mode édition
-                <button onClick={() => setEditing(true)}>Modifier</button>
+                <button className="btn ghost" onClick={() => setEditing(true)}>Modifier</button>
             )}
         </div>
     );

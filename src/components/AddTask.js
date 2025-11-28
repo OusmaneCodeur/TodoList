@@ -27,14 +27,15 @@ const AddTask = () => {
 
     return (
         // Champ texte contrôlé + bouton d'ajout
-        <div>
+        <div className="add-task">
             <input
+                className="task-input"
                 type="text"
                 placeholder="Nouvelle tâche"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
-            <button onClick={handleAdd}>Ajouter</button>
+            <button className="btn primary" onClick={handleAdd}>Ajouter</button>
         </div>
     );
 };

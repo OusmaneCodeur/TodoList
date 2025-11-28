@@ -18,21 +18,28 @@ const ListTask = () => {
 
     return (
         // Section affichant la liste + le sélecteur de filtre
-        <div>
-            <h3>Liste des tâches</h3>
+        <section className="tasks-panel">
+            <div className="panel-controls">
+                <h3>Liste des tâches</h3>
 
-            {/* Le select change le filtre stocké dans Redux */}
-            <select onChange={(e) => dispatch(setFilter(e.target.value))}>
-                <option value="all">Toutes</option>
-                <option value="done">Faites</option>
-                <option value="notDone">Non faites</option>
-            </select>
+                {/* Le select change le filtre stocké dans Redux */}
+                <select
+                    className="filter-select"
+                    onChange={(e) => dispatch(setFilter(e.target.value))}
+                >
+                    <option value="all">Toutes</option>
+                    <option value="done">Faites</option>
+                    <option value="notDone">Non faites</option>
+                </select>
+            </div>
 
-            {/* On parcourt la liste filtrée pour rendre un composant Task par élément */}
-            {filteredList.map((task) => (
-                <Task key={task.id} task={task} />
-            ))}
-        </div>
+            <div className="task-list">
+                {/* On parcourt la liste filtrée pour rendre un composant Task par élément */}
+                {filteredList.map((task) => (
+                    <Task key={task.id} task={task} />
+                ))}
+            </div>
+        </section>
     );
 };
 
